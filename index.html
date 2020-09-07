@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue Js</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+<div id="root">
+	{{name | lowercase}} <br>
+	{{profession | uppercase | lowercase}} <br>
+
+	Today is {{today | bdFormat}}
+</div>
+
+
+
+
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+	Vue.filter("lowercase", function(s){
+		return s.toLowerCase();
+	});
+
+	Vue.filter("bdFormat", function(s){
+		return s.getUTCDate() + "-" + (s.getUTCMonth()+1) + "-" + s.getUTCFullYear();
+	});
+
+
+
+
+	var app = new Vue({
+		el: "#root",
+		data: {
+			name: "Deepta Barua",
+			profession: "Software Engineer",
+			today: new Date()
+		},
+
+		computed: {
+			upperCasedName: function(){
+				return this.name.toUpperCase();
+			}
+		},
+
+		filters:{
+			uppercase: function(s){
+				return s.toUpperCase();
+			}
+		}
+	});
+	
+</script>
+
+</body>
+</html>
